@@ -10,33 +10,33 @@ const str1 = `The Tao gave birth to machine language.  Machine language gave bir
 
 const str2 = `C makes it easy for you to shoot yourself in the foot. C++ makes that harder, but when you do, it blows away your whole leg. (с) Bjarne Stroustrup`;
 
-const findFirstNonRepeatedChar = (str) => {
-  let cash = "";
-  let arr = [...str];
-  for (let i = 0; i < arr.length; i++) {
+const findFirstNonRepeatedCharacter = (string) => {
+  let cashArray = "";
+  let stringToArray = [...string];
+  for (let i = 0; i < stringToArray.length; i++) {
     if (
       !(
-        str.substring(i + 1, arr.length).includes(arr[i]) ||
-        cash.includes(arr[i])
+        string
+          .substring(i + 1, stringToArray.length)
+          .includes(stringToArray[i]) || cashArray.includes(stringToArray[i])
       )
     ) {
-      return arr[i];
+      return stringToArray[i];
     }
-    cash = cash + arr[i];
+    cashArray = cashArray + stringToArray[i];
   }
 };
-const createNonRepeatedCharArray = (arr) => {
-  const result = arr.reduce((init, next) => {
-    init = [...init, findFirstNonRepeatedChar(next)];
+const createNonRepeatedCharArray = (stringsArray) => {
+  const charArray = stringsArray.reduce((init, next) => {
+    init = [...init, findFirstNonRepeatedCharacter(next)];
     return init;
   }, []);
-  return result;
+  return charArray;
 };
-const splitArray = (str) => {
-  const arr = [...str.split(" ")];
-  const result = createNonRepeatedCharArray(arr);
-
-  return findFirstNonRepeatedChar(result.join());
+const findUniqueCharacter = (string) => {
+  const stringsArray = [...string.split(" ")];
+  const result = createNonRepeatedCharArray(stringsArray);
+  return findFirstNonRepeatedCharacter(result.join());
 };
-console.log(splitArray(str1));
-console.log(splitArray(str2));
+console.log(findUniqueCharacter(str1));
+console.log(findUniqueCharacter(str2));
